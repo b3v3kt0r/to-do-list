@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -31,6 +31,16 @@ class TaskDeleteView(generic.UpdateView):
     fields = "__all__"
     success_url = reverse_lazy("core:task_list")
     template_name = "core/task_confirm_delete.html"
+
+
+def check(request: HttpRequest, pk: int) -> HttpResponse:
+    task = Task.objects.get(pk=pk)
+    if task.checker is True:
+        task.checker = False
+    else:
+        task.checker = True
+    task.save()
+    return redirect(reverse_lazy("core:task_list"))
 
 
 class TagsListView(generic.ListView):

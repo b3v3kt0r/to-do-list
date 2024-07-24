@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block title %}<title>Tasks</title>{% endblock %}
 {% block content %}
-  <h1>TODO list <a href="{% url 'core:task_create' %}">+</a></h1>
+  <h1>TODO list <a class="btn btn-primary" href="{% url 'core:task_create' %}">+</a></h1>
   {% if task_list %}
     <ul>
       {% for task in task_list %}
         <li><strong>{{ task.content }}</strong></li>
+        <a class="btn btn-primary" href="{% url 'core:check' task.id %}">
+          {% if task.checker is True %}Undo
+          {% else %}Complete
+          {% endif %}</a>
         {% if task.checker %}
           <p style="color: green">Done</p>
         {% else %}
