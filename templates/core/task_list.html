@@ -6,6 +6,11 @@
     <ul>
       {% for task in task_list %}
         <li><strong>{{ task.content }}</strong></li>
+        {% if task.checker %}
+          <p style="color: green">Done</p>
+        {% else %}
+          <p style="color: red">Not done</p>
+        {% endif %}
         <p>{{ task.created_at }}</p>
         <p>Tags: {% for tag in task.tags.all %} {{ tag.name }}{% endfor %}
           <a href="{% url "core:task_update" pk=task.id %}">UPDATE</a>
