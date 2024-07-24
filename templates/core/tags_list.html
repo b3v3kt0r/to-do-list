@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Tag list <a href="{% url "core:tags_create" %}">+</a></h1>
+  <h1>Tag list <a class="btn btn-primary float-right" href="{% url "core:tags_create" %}">ADD</a></h1>
 
   {% if tag_list %}
     <table class="table">

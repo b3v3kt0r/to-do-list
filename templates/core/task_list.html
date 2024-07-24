@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block title %}<title>Tasks</title>{% endblock %}
 {% block content %}
-  <h1>TODO list <a class="btn btn-primary" href="{% url 'core:task_create' %}">+</a></h1>
+  <h1 style="margin-left: 35px">TODO list <a class="btn btn-primary float-right" href="{% url 'core:task_create' %}">Add task</a></h1>
   {% if task_list %}
-    <ul>
+    <ul style="list-style: none">
       {% for task in task_list %}
+        <hr>
         <li><strong>{{ task.content }}</strong></li>
-        <a class="btn btn-primary" href="{% url 'core:check' task.id %}">
+        <a class="btn {% if task.checker %}btn-secondary{% else %}btn-success{% endif %} float-right"
+           href="{% url 'core:check' task.id %}">
           {% if task.checker is True %}Undo
           {% else %}Complete
           {% endif %}</a>
@@ -15,7 +17,8 @@
         {% else %}
           <p style="color: red">Not done</p>
         {% endif %}
-        <p>{{ task.created_at }}</p>
+        <p>Created at: {{ task.created_at }}</p>
+        <p style="color: darkred">Deadline: {{ task.deadline }}</p>
         <p>Tags: {% for tag in task.tags.all %} {{ tag.name }}{% endfor %}
           <a href="{% url "core:task_update" pk=task.id %}">UPDATE</a>
           <a href="{% url "core:task_delete" pk=task.id %}">DELETE</a></p>
