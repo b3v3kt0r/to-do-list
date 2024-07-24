@@ -9,8 +9,7 @@ class Task(models.Model):
     tags = models.ManyToManyField("Tag")
 
     class Meta:
-        ordering = ["-created_at", "-checker"]
-
+        ordering = ["checker", "-created_at"]
 
 
 class Tag(models.Model):
