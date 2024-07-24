@@ -1,7 +1,9 @@
 from django.urls import path
 
+from core.views import TaskListView
+
 urlpatterns = [
-    path("", index, name="index"),
+    path("", TaskListView, name="task_list"),
 ]
 
 app_name = "core"
