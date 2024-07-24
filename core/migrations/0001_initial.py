@@ -7,26 +7,41 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Task',
+            name="Task",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('datetime', models.DateTimeField(auto_created=True)),
-                ('content', models.CharField(max_length=255)),
-                ('deadline', models.DateTimeField()),
-                ('checker', models.BooleanField()),
-                ('tags', models.ManyToManyField(to='core.tag')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("datetime", models.DateTimeField(auto_created=True)),
+                ("content", models.CharField(max_length=255)),
+                ("deadline", models.DateTimeField()),
+                ("checker", models.BooleanField()),
+                ("tags", models.ManyToManyField(to="core.tag")),
             ],
         ),
     ]

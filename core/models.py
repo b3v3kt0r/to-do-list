@@ -8,6 +8,10 @@ class Task(models.Model):
     checker = models.BooleanField(default=False)
     tags = models.ManyToManyField("Tag")
 
+    class Meta:
+        ordering = ["-created_at", "-checker"]
+
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
