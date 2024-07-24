@@ -6,7 +6,7 @@ class Task(models.Model):
     datetime = models.DateTimeField(auto_created=True)
     deadline = models.DateTimeField()
     checker = models.BooleanField()
-    tags = models.ForeignKey("Tag", on_delete=models.SET_NULL)
+    tags = models.ManyToManyField("Tag")
 
 
 class Tag(models.Model):
