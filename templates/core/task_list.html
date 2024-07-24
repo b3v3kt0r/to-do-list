@@ -7,7 +7,10 @@
       {% for task in task_list %}
         <li><strong>{{ task.content }}</strong></li>
         <p>{{ task.created_at }}</p>
-        <p>Tags: {% for tag in task.tags.all %} {{ tag.name }}{% endfor %}{% empty %}No tags!</p>
+        <p>Tags: {% for tag in task.tags.all %} {{ tag.name }}{% endfor %}
+          <a href="{% url "core:task_update" pk=task.id %}">UPDATE</a>
+          <a href="{% url "core:task_delete" pk=task.id %}">DELETE</a></p>
+      {% empty %}No tags!
       {% endfor %}
     </ul>
   {% else %}
