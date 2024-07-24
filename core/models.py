@@ -3,7 +3,7 @@ from django.db import models
 
 class Task(models.Model):
     content = models.CharField(max_length=255)
-    datetime = models.DateTimeField(auto_created=True)
+    created_at = models.DateTimeField(auto_created=True)
     deadline = models.DateTimeField()
     checker = models.BooleanField()
     tags = models.ManyToManyField("Tag")
